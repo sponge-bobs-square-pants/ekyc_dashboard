@@ -30,7 +30,7 @@ app.get('/api/auth/Token', async (req, res) => {
       return res.status(404).json({ error: 'Token not found' });
     }
     const FullToken = 'Zoho-oauthtoken ' + token.BearerToken;
-    return res.json({ token: FullToken });
+    return res.status(200).json({ token: FullToken });
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
   }
