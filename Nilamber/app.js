@@ -68,7 +68,7 @@ app.post('/api/auth/newToken', async (req, res) => {
     existingToken.BearerToken = access_token;
     await existingToken.save();
     const FullToken = 'Zoho-oauthtoken ' + access_token;
-    return res.json({ token: FullToken });
+    return res.status(200).json({ token: FullToken });
   } catch (error) {
     return res.status(500).json({ error: 'Internal Server Error' });
   }
@@ -89,9 +89,73 @@ app.post('/api/sendMessage', async (req, res) => {
         templateParams,
       }
     );
-    return res.json(response.data);
+    return res.status(200).json(response.data);
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+const retailerIDsToCheck = [
+  'qy0f6jzspi',
+  'ygj25q09bt',
+  'mokl78gv7w',
+  'mqtwiurixc',
+  '9pi8r3bqjr',
+  'lucqrik092',
+  'xwihrtwudw',
+  '1arief76aa',
+  '11h8m2ns9y',
+  'sc0ay0t4d4',
+  '2l5f0j3wr8',
+  '0me5f9h6k3',
+  'n8woqbql9i',
+  'oulnula2lr',
+  'qv0d432psu',
+];
+app.post('/api/itemFormat', async (req, res) => {
+  try {
+    const amount = req.headers.total;
+    const data = JSON.parse(req.headers.data);
+    if (!data) {
+      return res
+        .status(500)
+        .json({ msg: 'Internal Server Errors', quantity: 0 });
+    }
+
+    const data1 = data.product_items;
+    let itemQuantityMore = false;
+    let totalQuantity = 0;
+    //checking for quantity more than 15
+    data1.forEach((item) => {
+      if (item.quantity > 15) {
+        itemQuantityMore = true;
+        return;
+      } else {
+        totalQuantity += item.quantity;
+      }
+    });
+
+    if (itemQuantityMore) {
+      return res.status(400).json({
+        msg: 'One or More items in your cart have individual quantity more than 15, Kindly reduce it.',
+        quantity: 0,
+      });
+    }
+    //total quantity
+
+    let matchFound = false;
+    data1.forEach((retailerID) => {
+      if (retailerIDsToCheck.includes(retailerID.product_retailer_id)) {
+        matchFound = true;
+        return;
+      }
+    });
+    if (matchFound) {
+      return res.status(200).json({ msg: 'True', quantity: totalQuantity });
+    } else {
+      return res.status(200).json({ msg: 'False', quantity: totalQuantity });
+    }
+  } catch (error) {
+    return res.status(500).json({ msg: 'Internal Server Error', quantity: 0 });
   }
 });
 // app.post('/api/auth/Token', async (req, res) => {
