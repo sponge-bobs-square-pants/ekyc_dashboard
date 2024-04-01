@@ -15,6 +15,7 @@ const helmet = require('helmet');
 const xss = require('xss-clean');
 const rateLimit = require('express-rate-limit');
 const EventEmitter = require('events');
+const moment = require('moment-timezone');
 
 app.use(helmet());
 app.use(cors());
@@ -158,6 +159,50 @@ app.post('/api/itemFormat', async (req, res) => {
     return res.status(500).json({ msg: 'Internal Server Error', quantity: 0 });
   }
 });
+function isLeapYear(year) {
+  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+}
+
+app.post('/api/timeFormat', async (req, res) => {
+  try {
+    const { datetime } = req.headers;
+    let [, year, month, day] = datetime.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    console.log(year, month, day);
+    month = parseInt(month);
+    day = parseInt(day);
+    year = parseInt(year);
+    console.log(year, month, day);
+    if (month === 2 && day > (isLeapYear(year) ? 29 : 28)) {
+      console.log('why this');
+      return res.status(400).json({ msg: 'Invalid date' });
+    }
+
+    const date = new Date(datetime);
+    const currentDate = new Date();
+
+    if (isNaN(date.getTime())) {
+      return res.status(400).json({ msg: 'Invalid datetime' });
+    }
+
+    const adjustedDate = new Date(date.getTime() - (5 * 60 + 30) * 60000);
+    const adjustedUTCString = adjustedDate.toISOString();
+
+    const timeDifferenceInMilliseconds = adjustedDate - currentDate;
+    const timeDifferenceInHours =
+      timeDifferenceInMilliseconds / (1000 * 60 * 60);
+
+    if (timeDifferenceInHours < 1) {
+      return res.status(403).json({
+        msg: `Kindly select a time and date after one hour of ${currentDate}`,
+      });
+    }
+
+    return res.status(200).json({ msg: adjustedUTCString });
+  } catch (error) {
+    return res.status(400).json({ msg: 'Invalid date' });
+  }
+});
+
 // app.post('/api/auth/Token', async (req, res) => {
 //   try {
 //     // Create a new Token document based on the request body
