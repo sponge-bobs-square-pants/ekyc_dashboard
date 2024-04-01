@@ -54,7 +54,7 @@ app.post('/api/auth/newToken', async (req, res) => {
     //   grant_type: 'refresh_token',
     // };
     const ZohoRequest = await axios.post(
-      'https://accounts.zoho.in/oauth/v2/token?refresh_token=1000.06f9d194cd59a19018e2814243bbd4f9.98b796e7b8c6bcd4b16aa866e43fe6e2&client_id=1000.IJSUXC1199E5GTAI0GHEJE879XP8YW&client_secret=0cee3a6d8834f049675f471f2f0d284ecab590adc5&scope=ZohoCRM.modules.all,Desk.tickets.ALL,Desk.contacts.ALL,ZohoSubscriptions.fullaccess.all,Desk.contacts.UPDATE,Desk.tasks.READ,Desk.search.READ,Desk.tickets.READ,Desk.contacts.READ'
+      'https://accounts.zoho.in/oauth/v2/token?refresh_token=1000.06f9d194cd59a19018e2814243bbd4f9.98b796e7b8c6bcd4b16aa866e43fe6e2&client_id=1000.IJSUXC1199E5GTAI0GHEJE879XP8YW&client_secret=0cee3a6d8834f049675f471f2f0d284ecab590adc5&scope=ZohoCRM.modules.all,Desk.tickets.ALL,Desk.contacts.ALL,ZohoSubscriptions.fullaccess.all,Desk.contacts.UPDATE,Desk.tasks.READ,Desk.search.READ,Desk.tickets.READ,Desk.contacts.READ&grant_type=refresh_token'
     );
     if (!ZohoRequest) {
       return res.status(404).json({ error: 'Zoho Token Creation Issue' });
@@ -174,11 +174,9 @@ app.post('/api/timeFormat', async (req, res) => {
     console.log(year, month, day);
     if (month === 2 && day > (isLeapYear(year) ? 29 : 28)) {
       console.log('why this');
-      return res
-        .status(400)
-        .json({
-          msg: 'Invalid date. Please select a correct date and time value',
-        });
+      return res.status(400).json({
+        msg: 'Invalid date. Please select a correct date and time value',
+      });
     }
 
     const date = new Date(datetime);
