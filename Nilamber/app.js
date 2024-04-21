@@ -22,7 +22,52 @@ app.use(cors());
 app.use(xss());
 app.use(express.json());
 
-// app.use('/api/v1/Login', login);
+const start = async () => {
+  try {
+    await connectDB(process.env.MONGO_URI);
+    app.listen(port, console.log(`Server is listening on port ${port}...`));
+  } catch (error) {
+    console.log(error);
+  }
+};
+start();
+
+async function generaNewToken() {
+  try {
+    const params = {
+      refresh_token: process.env.REFRESH_TOKEN,
+      client_id: process.env.CLIENT_ID,
+      client_secret: process.env.CLIENT_SECRET,
+      scope:
+        'ZohoCRM.modules.all,Desk.tickets.ALL,Desk.contacts.ALL,ZohoSubscriptions.fullaccess.all,Desk.contacts.UPDATE,Desk.tasks.READ,Desk.search.READ,Desk.tickets.READ,Desk.contacts.READ',
+      grant_type: 'refresh_token',
+    };
+    const ZohoRequest = await axios.post(
+      'https://accounts.zoho.in/oauth/v2/token',
+      null,
+      { params }
+    );
+    if (!ZohoRequest.data || !ZohoRequest.data.access_token) {
+      console.error('Zoho Token Creation Issue');
+      return;
+    }
+
+    const { access_token } = ZohoRequest.data;
+    const existingToken = await Token.findOne();
+    if (!existingToken) {
+      console.error('Token not found');
+      return;
+    }
+
+    existingToken.BearerToken = access_token;
+    await existingToken.save();
+  } catch (error) {
+    console.error('Error refreshing Zoho token:', error.message);
+  }
+}
+generaNewToken();
+setInterval(generaNewToken, 60 * 60 * 1000);
+
 app.get('/api/auth/Token', async (req, res) => {
   try {
     const token = await Token.findOne();
@@ -229,12 +274,3 @@ app.post('/api/timeFormat', async (req, res) => {
 // });
 
 //START APP
-const start = async () => {
-  try {
-    await connectDB(process.env.MONGO_URI);
-    app.listen(port, console.log(`Server is listening on port ${port}...`));
-  } catch (error) {
-    console.log(error);
-  }
-};
-start();
