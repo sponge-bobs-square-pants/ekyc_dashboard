@@ -1,0 +1,20 @@
+import React from 'react';
+import './DefaultLoading.css';
+const LoadingDefault = () => {
+  return (
+    <div className='terminal-loader'>
+      {/* //   <div class='terminal-header'>
+    //     <div class='terminal-title'>Status</div>
+    //     <div class='terminal-controls'>
+    //       <div class='control close'></div>
+    //       <div class='control minimize'></div>
+    //       <div class='control maximize'></div>
+    //     </div>
+    //   </div>
+    //   <div class='text'>Loading...</div> */}
+      <div className='loaders'></div>
+    </div>
+  );
+};
+
+export default LoadingDefault;

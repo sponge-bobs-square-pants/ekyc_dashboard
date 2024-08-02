@@ -1,0 +1,259 @@
+/* dashboard.css */
+
+.dashboard-container {
+  display: flex;
+  height: 100vh; /* Full viewport height */
+  position: relative; /* Needed for positioning of the top-nav */
+  overflow: hidden;
+}
+
+.left-nav {
+  width: 3.5%;
+  background-color: #f8f8f8;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  /* background: red; */
+  position: relative; /* To ensure it stays below the top-nav */
+  z-index: 1; /* Lower z-index to be below the top-nav */
+  border-radius: 0px;
+  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  box-shadow: 5px 5px 22px #d4d4d4, -5px -5px 22px #ffffff;
+}
+
+.main-content {
+  margin-left: 8.25%; /* Leave space for the left-nav */
+  padding: 1rem;
+  padding-top: 60px; /* Space for the fixed top-nav */
+  width: 80%;
+  height: calc(
+    100vh - 60px
+  ); /* Full viewport height minus the height of the top-nav */
+  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  scrollbar-width: thin; /* Set scrollbar width */
+  scrollbar-color: transparent transparent;
+}
+
+.top-nav {
+  position: fixed; /* Fixed positioning to span full width */
+  top: 0; /* Stick to the top of the viewport */
+  left: 0; /* Align to the left edge of the viewport */
+  width: 100%; /* Full width of the viewport */
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 1rem;
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center items vertically */
+  justify-content: space-between; /* Space between items */
+  z-index: 2; /* Higher z-index to be above the left-nav */
+}
+
+.top-nav img {
+  margin-right: 1rem; /* Space between image and other content */
+}
+
+.content {
+  max-width: 100%; /* Use full width of main-content */
+  margin: 0 auto; /* Center align */
+  padding: 1rem;
+}
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.userbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  margin-bottom: 0.5rem;
+}
+
+.userbox img {
+  border-radius: 50%;
+}
+
+.moreDetails {
+  padding: 0.5rem 1rem; /* Subtract border width */
+  background-color: darkgreen;
+  color: #fff;
+  border: solid 2px transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  letter-spacing: 0rem;
+  align-items: center;
+  justify-content: center;
+}
+.moreDetails:hover {
+  background-color: transparent;
+  border: solid 2px darkgreen;
+  color: black;
+  padding: 0.5rem 1rem; /* Reset padding to account for border */
+}
+
+.moreDetailsReject {
+  padding: 0.5rem 1.6rem !important;
+  background-color: transparent;
+  border: solid 2px darkgreen;
+  color: black;
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: 0rem;
+  display: flex; /* Add flexbox display */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+}
+.moreDetailsReject:hover {
+  padding: 0.6rem 1.7rem !important;
+  background-color: darkred;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex; /* Add flexbox display */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+}
+.userbox .button-group {
+  display: flex;
+  gap: 16px;
+  margin-right: 16px;
+}
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.moreDetails_all_users {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  border: solid 2px darkgreen;
+  cursor: pointer;
+}
+.moreDetails_all_users:hover {
+  padding: 0.5rem 1rem;
+  background-color: #139b49;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.sideButtons {
+  /* color: gray; */
+}
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+.tooltip {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  margin-top: 95px;
+  left: 50px; /* Position the tooltip to the right of the button */
+  margin-left: 10px; /* Add some space between the button and the tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+  transform: translateY(
+    -50%
+  ); /* Center the tooltip vertically relative to the button */
+}
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: -64%;
+  left: -33px; /* Position the arrow to the left of the tooltip */
+  margin-top: 35px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent black transparent transparent;
+}
+.tooltip-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+.icon-active {
+  color: darkgreen;
+  font-size: 1.3rem;
+}
+
+.icon-inactive {
+  color: gray;
+  font-size: 1.3rem;
+  margin-top: 20px;
+}
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
+  background: gray;
+  border-color: gray;
+  color: black;
+}
+
+.tooltip-containers {
+  position: relative;
+  display: inline-block;
+  /* background: red; */
+}
+.tooltipss {
+  visibility: hidden; /* Hidden by default */
+  /* Adjust width to fit the content */
+  background-color: rgba(0, 0, 0, 0.7); /* Dark background for readability */
+  color: #fff;
+  text-align: left; /* Align text to the left to fit the icon */
+  border-radius: 6px;
+  padding: 5px 10px; /* Adjust padding as needed */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position the tooltip above the button */
+  left: 50%;
+  transform: translateX(-50%); /* Center tooltip */
+  opacity: 0;
+  transition: opacity 0.3s, visibility 0.3s; /* Smooth transition */
+  font-size: 0.8rem; /* Make text smaller */
+  display: flex; /* Align items horizontally */
+  align-items: center; /* Vertically center items */
+}
+.tooltipss::after {
+  content: '';
+  position: absolute;
+  top: 100%; /* Position arrow at the bottom of the tooltip */
+  left: 50%;
+  transform: translateX(-50%); /* Center arrow */
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.7) transparent transparent transparent;
+}
+.tooltip-containers:hover .tooltipss {
+  visibility: visible;
+  opacity: 1;
+}
+.tooltipss .icon {
+  margin-right: 6px;
+  opacity: 0.8;
+}
+
+.tooltip-containers:hover ~ .userbox .user-name {
+  text-decoration: underline;
+}

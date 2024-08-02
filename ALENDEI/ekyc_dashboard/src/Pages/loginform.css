@@ -1,0 +1,221 @@
+.toast-error {
+  background-color: #38a169 !important; /* Green background color */
+  color: white !important; /* Text color */
+}
+
+.toast-container {
+  background-color: #38a169;
+  font-family: Arial, sans-serif; /* Font family */
+}
+
+.toast-error .Toastify__progress-bar {
+  background: white !important;
+}
+
+.toast-error .Toastify__toast-icon > svg {
+  fill: white !important; /* White exclamation icon */
+}
+
+.Toastify__close-button > svg {
+  fill: var(--toastify-close-button-color) !important;
+}
+
+.custom-button {
+  background-color: #38a169; /* Green background color */
+  color: white;
+  border: 2px solid transparent; /* Initial border */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+.custom-button1 {
+  opacity: 0.5; /* Reduced opacity for disabled state */
+  cursor: not-allowed; /* Change cursor to not-allowed for disabled state */
+  background-color: #d1d5db;
+  border: 2px solid transparent; /* Lighter grey color for disabled state */
+}
+
+.custom-button:hover {
+  background-color: transparent;
+  color: #38a169;
+  border-color: #38a169;
+}
+.custom-border-radius {
+  border-top-left-radius: 50px; /* Adjust the value as needed */
+  border-bottom-left-radius: 50px; /* Adjust the value as needed */
+  border-top-right-radius: 50px; /* Adjust the value as needed */
+  border-bottom-right-radius: 50px;
+  background: linear-gradient(145deg, #f8fffd, #d1ddd4) !important;
+  box-shadow: 20px 20px 60px #c5d0c9, -20px -20px 60px #ffffff;
+}
+.textfield {
+  border-radius: 10px !important;
+  background: linear-gradient(145deg, #d1ddd4, #f8fffd) !important;
+  box-shadow: 20px 20px 60px #c5d0c9, -20px -20px 60px #ffffff;
+}
+.custom-bottom-border {
+  /* background-color: #f7f7f7; */
+  border: none;
+  padding: 0.6rem;
+  /* border-bottom: 1px solid black; */
+  border-radius: 0.2rem;
+}
+.custom-input-container {
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 0.2rem;
+  padding: 0.1rem;
+  display: flex;
+  align-items: center;
+}
+
+/* .custom-bottom-border:focus {
+  border-bottom: 2px solid black;
+} */
+
+.custom-button:hover {
+  background: transparent;
+  color: #008000;
+  font-weight: 600;
+  border: 2px solid #38a169;
+}
+
+/* .main-div {
+  background-image: url('3163534-uhd_3840_2160_30fps.gif');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+} */
+
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.2); /* White with opacity */
+  backdrop-filter: blur(14px); /* Blur the background */
+  -webkit-backdrop-filter: blur(14px); /* For Safari support */
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.met .text-sm {
+  color: green; /* Color of the text when criteria is met */
+  transition: color 0.3s ease-in-out;
+}
+
+.unmet .text-sm {
+  color: red; /* Color of the text when criteria is not met */
+  transition: color 0.3s ease-in-out;
+}
+
+.label.shrink {
+  top: 0;
+  transform: translateY(-150%);
+  opacity: 1;
+  font-size: 0.75rem;
+}
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+:root {
+  --toastify-color-dark: rgb(167, 244, 193);
+  --toastify-text-color-dark: black;
+  --circle-size: 400px; /* Default circle size */
+  --logo-size: 50px; /* Default logo size */
+  --toastify-close-button-color: black;
+  --PhoneInputCountryFlag-aspectRatio: 0.333;
+}
+
+/* Adjust circle size for larger screens */
+@media (min-width: 1200px) {
+  :root {
+    --circle-size: 600px; /* Larger circle size for bigger screens */
+    --logo-size: 70px; /* Adjust logo size accordingly */
+  }
+}
+
+@media (min-width: 1600px) {
+  :root {
+    --circle-size: 800px;
+    --logo-size: 90px;
+  }
+  .otp-input {
+    margin-left: 1.2rem;
+    margin-right: 1.2rem;
+  }
+  .custom-border-radius {
+    width: 28vw !important;
+  }
+  .resend-otp-button {
+    /* background-color: red !important; */
+    align-items: flex-end !important;
+  }
+}
+
+/* Hide logos and main image on smaller screens */
+@media (max-width: 768px) {
+  .circle-logo,
+  .mainImage,
+  .circle {
+    display: none !important;
+  }
+  .AlendeiPlatforms {
+    font-size: 1.5rem !important;
+  }
+  .formContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+    width: 100dvw;
+  }
+  .custom-border-radius {
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+  .otp-input {
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+    width: 10.6dvw !important;
+    /* height: 4dvh !important; */
+  }
+  .form {
+    width: 90vw !important;
+    margin: 0vw !important;
+  }
+  .headertext {
+    margin-top: -20px !important;
+  }
+  .welcometext {
+    font-size: 1.2rem !important;
+    margin-bottom: 0px !important;
+  }
+  .country-list {
+    width: 50dvw !important;
+  }
+  .centered-container {
+    background-color: white;
+    padding: 16px 0px !important;
+    width: 90dvw !important;
+    height: auto;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow */
+  }
+
+  .thank-you-container {
+    margin-bottom: 20px; /* Space between content and loading dots */
+  }
+}
+
+.input-error {
+  border: 1px solid red !important;
+  border-radius: 4px !important;
+}
+
+.placeholder-text {
+  color: #999;
+}
+
+.input-error {
+  border-color: #dc3545;
+}

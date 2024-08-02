@@ -1,0 +1,194 @@
+/* src/Components/UserDetailsPopup.css */
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  padding-top: 50px;
+  border-radius: 10px;
+  position: relative;
+  max-width: 700px;
+  width: 100%;
+  height: 500px; /* Fixed height for consistency */
+}
+
+.close-button {
+  position: absolute;
+  top: -7px;
+  right: 5px;
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.tabs button {
+  flex: 1;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  background: #f1f1f1;
+}
+
+.tabs button.active {
+  background-color: #139b49;
+  color: white;
+}
+
+.tab-content {
+  padding: 10px 0;
+}
+
+.loading-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.9); /* Slightly white background */
+  border-radius: 5px; /* Match the popup content */
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.tab1-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center items vertically */
+  gap: 20px; /* Space between text and image */
+  position: relative;
+}
+
+.text-content {
+  flex: 1;
+  padding-right: 20px;
+  border-right: 1px solid #ddd;
+}
+
+.text-content .form-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.text-content .form-row label {
+  font-weight: bold;
+  width: 150px;
+}
+
+.text-content .form-row input {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 8px;
+  background-color: #f9f9f9;
+  width: calc(
+    100% - 160px
+  ); /* Reduced width to add space between input and image */
+  cursor: not-allowed; /* Indicate that the input is not editable */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.image-content {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+.image-content img {
+  max-width: auto; /* Fixed max-width to prevent overflow */
+  max-height: 350px; /* Prevents the image from exceeding the container height */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 5px;
+}
+
+/* src/Components/UserDetailsPopup.css */
+
+.tab2-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center items vertically */
+  gap: 20px; /* Space between text and image */
+  position: relative;
+}
+
+.tab2-content .text-content {
+  flex: 1;
+  padding-right: 20px;
+  border-right: 1px solid #ddd;
+}
+
+.tab2-content .text-content .form-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.tab2-content .text-content .form-row label {
+  font-weight: bold;
+  width: 150px;
+}
+
+.tab2-content .text-content .form-row input {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 8px;
+  background-color: #f9f9f9;
+  width: calc(100% - 160px);
+  cursor: grab;
+  box-sizing: border-box;
+}
+
+.tab2-content .image-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab2-content .image-content img {
+  max-width: auto;
+  max-height: 350px;
+  height: auto;
+  border-radius: 5px;
+}
+.placeholder-image {
+  border: 2px solid red; /* Red border for the placeholder */
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  font-weight: bold;
+  height: 300px;
+  width: 100%; /* Take full width of the container */
+  text-align: center;
+}
